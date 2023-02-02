@@ -1,0 +1,421 @@
+﻿@model IEnumerable<Assignment1.Models.PmModel>  
+
+@{
+    ViewData["Title"] = "Index";
+    var pgs = ViewBag.pages;
+    
+}
+
+
+            <div class="row mt-3">
+                <span>
+                    <span class="custom-dashtext">Manage PMs</span>
+                    <span class="float-end">
+                     <a class="btn  addToDash rotate-dash PM" style="border-bottom-width: 5px;padding-top: 5px;padding-right: 12px;" ><i class="bi bi-magic"></i>Check for
+                             Missing PMs on Assets</a>
+                              <a class="btn addToDash rotate-dash"><i class="bi bi-arrow-repeat me-1 fw-bold"></i>Bulk
+                                Actions</a>
+                              <a class="btn addToDash rotate-dash"><i class="bi bi-cloud-arrow-up-fill"></i>Import/Export</a>
+                    </span>
+                </span>
+            </div>
+
+                <div class=" container p-5 my-5 border">
+                    <span class="col-6 start-0"><i class="bi bi-wrench-adjustable" id="pm_template"></i>PM Template</span>
+                        <span class="float-end">
+                            <div class="input-group rounded">
+                                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <span class="input-group-text border-0" id="search-addon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                            </div>
+                        </span>
+                    </span>
+                
+                <hr>
+                
+
+                <div class="row mt-3">
+                    <span>
+                        <a class="btn btn-success addToDash addtoDashboard"  asp-controller="PM" asp-action="Create" ><i class="bi bi-plus-square"></i>
+                            New PM Template
+                        </a>
+                    <span class="float-end">
+                        <a class="btn btn-success addToDash addtoDashboard" data-bs-toggle="tooltip" data-bs-placement="top" title="This view shows you a list of PM Templates">
+                            <i class="bi bi-list-ul"></i>List View</a>
+                        <a class="btn addToDash rotate-dash" data-bs-toggle="tooltip" data-bs-placement="left" title="This view shows you all of the open tasks along with upcoming tasks in the calendar view.">
+                            <i class="bi bi-calendar-week"></i>Calendar View</a>
+                    </span>
+                </span>
+                
+                 @*<div class="container" style="width:40%;margin-top:2%">
+                @{ Html.RenderPartial("SelectAsset");}
+   
+                </div>*@
+
+
+              
+
+                <table class ="table table-bordered table-striped" style="width:100%">
+                    <caption>Table for Entries</caption>
+                    
+                        <col span="1" style="width: 16.66%;">
+                    
+                            <thead>    
+                                <tr>
+                                    <th class="col-sm-2" style="width: 16.66%;">
+                                        PM name
+                                    </th>
+                                    <th class="col-sm-2" style="width: 16.66%;">
+                                        asset 
+                                    </th>
+                                    <th style="width: 33.32%;">
+                                        Schedules 
+                                    </th>
+                                    <th class="col-sm-2" style="width: 16.66%;">
+                                        Assigned_To 
+                                    </th>
+                                    <th class="col-sm-2" style="width: 16.66%;">Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               @foreach (var obj in Model)
+                                {
+                                    <tr>
+                                        
+                                        <td width="50%">
+                                            <a  asp-controller="PM" asp-action="Edit" asp-route-id="@obj?.PM_Id"><i class="bi bi-wrench-adjustable" ></i>
+                                                @*asp-controller="PM" asp-action="Edit" asp-route-id="@obj?.PM_Id"*@
+                                                @*@{Html.RenderPartial("Edit", @obj);}*@
+                                            </a>
+
+                                            <a asp-controller="PM" asp-action="Details" asp-route-id="@obj?.PM_Id" >@obj.PM_Name</a>
+                                        </td>
+                                        <td width="30%">
+                                            
+                                        @if (@obj.Asset != null)
+                                        {
+                                            
+                                                <a asp-controller="PM" asp-action="_asset" asp-route-id="@obj.PM_Id"> @obj.Asset
+                                                     
+                                                    @*@{Html.RenderPartial("_asset", @obj);}*@
+                                                </a>
+                                               
+                                               <a  asp-controller="PM" asp-action="Edit" asp-route-id="@obj?.PM_Id"><i class="bi bi-pencil-fill"></i></a>
+                                              
+                                            
+                                                
+                                        }
+                                        else
+                                        {
+                                            
+                                            <a asp-controller="PM" asp-action="_SelectAsset" asp-route-id="@obj.PM_Id" >
+                                                    <i class="bi bi-plus plus" ></i>                                                  
+                                                    
+                                                    
+                                            </a>
+                                        }
+
+                                        </td>
+                                        <td width="30%">
+                                            @obj.Schedules
+                                        </td>
+                                        <td width="30%">
+                                            <!--users -->
+                                            <a data-bs-toggle="modal" href="#myModal3" data-bs-target="#myModal3">@obj.Assigned_To</a>
+                                            
+                                        </td>
+                                        <td>
+                                            <div class="w-75 btn-group" role="group">
+                                                <i class="bi bi-caret-down-square" style="padding-right:10px;"></i>
+                                                <a asp-controller="PM" asp-action=""><i class="bi bi-arrow-up-right-square-fill"></i></a>
+                                                
+                                                <a class="btn btn-secondary mx-2" asp-controller="PM" asp-action="Edit" asp-route-id="@obj.PM_Id"> <i class="bi bi-pencil-square"></i> Edit</a>
+                                                <a asp-controller="PM" asp-action="Delete" asp-route-id="@obj.PM_Id"><i class="bi bi-trash"></i></a>
+                                                
+                                            </div>
+                                        </td>
+                                     </tr>
+                                }
+                            </tbody> 
+                </table>
+                <!---------------------------------------------------------------------------------Pagination----------------------------------------------------------------------->
+                            <span class="">
+                                <nav aria-label="Page navigation example">
+                                  <ul class="pagination justify-content-center">
+                                     @for(int x = 1;  x <= pgs; x++)
+                                         {
+                                             <li class="page-item" >
+                                                 <a class="page-link" asp-controller="PM" asp-action="Index" asp-route-pg="@x" >
+                                                     @x
+                                                 </a>
+                                                 
+                                             </li>  
+                                         }
+                                    
+                                  </ul>
+                                </nav>
+                            </span>
+    
+          
+
+
+
+
+  
+
+
+@*View 5 starts here
+    
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+    
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Select Asset</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                
+          </div>          
+    
+
+          <!-- Modal body -->
+          <div class="modal-body">
+          <span class="float-end">
+                     <div class="input-group">
+                     <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" />
+                     </div>
+                     </span>
+            <p>Which Asset would you like to attach this PM to?</p>
+          
+          </div>
+          <div class="try">
+          <span class="float-end pe-3 pb-3">
+          <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Collapse All </a> | <a href="#">Deselect All</a> | <a href="#">Select All</a>
+          </span>
+          </div>
+          
+          <button class="text-start mx-3 style">
+          	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  				<label class="form-check-label" for="flexCheckDefault"><i class="bi bi-exclamation-triangle-fill"></i>
+    				Don't assign to an Asset
+  				</label>
+          </button>
+                              
+        <button class="text-start mt-5 mx-3 style" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <input class="form-check-input check" type="checkbox" value="" id="select_all">
+              <div class="rotate"><i class = "bi-bi-caret-right-square"></i></div>
+                <label class="form-check-label" for="flexCheckDefault1"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Cake Donuts Line                    
+                </label>
+              <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Depositer
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Dough Former
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Dual Fuel Fryer : Cake Donuts Line
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault3">
+                <label class="form-check-label" for="flexCheckDefault3"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Frying Oil Filtration: Cake Donuts Line
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+               
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault4">
+                <label class="form-check-label" for="flexCheckDefault4"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Sugaring Machine
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+          
+        </button> 
+          
+    
+         
+      <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+      	<input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault5">
+  			<label class="form-check-label" for="flexCheckDefault5"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+    			Yeast Raised Line
+  			</label>
+            <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6">
+              <label class="form-check-label" for="flexCheckDefault6"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Cross Roller/Sheeter
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7">
+              <label class="form-check-label" for="flexCheckDefault7"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Cutting Station
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+              <label class="form-check-label" for="flexCheckDefault8"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Dough Former
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault9">
+                <label class="form-check-label" for="flexCheckDefault9"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Dual Fuel Fryer: Yeast Raised Line
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault10">
+                <label class="form-check-label" for="flexCheckDefault10"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                    Flour Duster
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
+                <label class="form-check-label" for="flexCheckDefault11"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Frying Oil Filtration
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault12">
+               <label class="form-check-label" for="flexCheckDefault12"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Glazer
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+      </button>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-success rounded-pill select" data-bs-dismiss="modal">Select</button>
+            <button type="button" class="btn btn-secondary rounded-pill cancel" data-bs-dismiss="modal">Cancel</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+View 5 ends here
+*@
+
+
+
+
+@*  View 3 starts here *@
+
+  <div class="modal" id="myModal3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change the Task's Assignment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <p>Please select which team or user you would like to change this Task's assignment to</p>
+                        <input class="form-control rounded-pill" placeholder="Search...." id="usersearch">
+                        <button class="btn btn-outline-secondary  rounded-pill ms-n3" >
+                          <i class="bi bi-search"></i>
+                        </button> 
+                    </div>
+
+                    <p style="padding-bottom: 3%;"><i type="checkbox" id = "checkid" class="btn btn-link" style="float:right; ">Deselect All</i></p>
+
+                     
+                         
+                         <ul style="float: left; width: 45%;">
+                            <p><b>Teams:</b></p>
+                            <p>
+                                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                                <label class="btn btn-outline-primary" id="but1" for="btncheck1"><i class="bi bi-people-fill" id = "teamicon"></i>Maintainance Crew</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                                <label class="btn btn-outline-primary" id="but1" for="btncheck2"><i class="bi bi-people-fill" id = "teamicon"></i>Maintainace Team</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                                <label class="btn btn-outline-primary" id="but1" for="btncheck3"><i class="bi bi-people-fill" id = "teamicon"></i>Manager</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                                <label class="btn btn-outline-primary" id="but1" for="btncheck4"><i class="bi bi-people-fill" id = "teamicon"></i>Night Staff</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                                <label class="btn btn-outline-primary" id="but1" for="btncheck5"><i class="bi bi-people-fill" id = "teamicon"></i>Technician</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                                <label class="btn btn-outline-primary" id="but1" for="btncheck6"><i class="bi bi-people-fill" id = "teamicon"></i>View Only</label>
+                            </p>
+                        </ul>
+                        <ul style="float: right; width: 45%;">
+                            <p><b>Users:</b></p>
+                            @foreach(var obj in Model)
+                                {
+                                    @if (@obj.Assigned_To != null)
+                                    {
+                                       <p>
+                                             <input type="checkbox" class="btn-check" id="@obj.PM_Id" autocomplete="off">
+                                             <label class="btn btn-outline-primary" id="but1" for="@obj.PM_Id">
+                                                 <i class="bi bi-person-circle" id = "teamicon"></i>@obj.Assigned_To
+                                             </label>
+                                        </p>
+                                    }
+                                    
+                                }
+                            
+                        </ul>
+                    
+                      </div>
+                
+                <div class="modal-footer">
+                    
+                    <button type="button" href="#" id="userselect" class="btn btn-success">Select</button>
+                    <a href="#" id="usersubmit" data-dismiss="modal" class="btn">Submit</a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+

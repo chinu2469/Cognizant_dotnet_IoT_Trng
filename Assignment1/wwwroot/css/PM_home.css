@@ -1,0 +1,167 @@
+/*index view color-profile pm*/
+#pm_template{
+    margin-left:10px;
+    
+}
+
+
+.PM{
+    padding:0px;
+    font-size:16px;
+}
+
+/*new asset css*/
+
+.modal-header {
+    border-bottom: 3px solid green !important;
+    background-color: #fafafa;
+}
+
+.plus {
+    font-size: 30px;
+    color: crimson;
+}
+/*new asset css end here*/
+
+
+/* User Css */
+
+#but1{
+    width: 90%;
+}
+
+#usersubmit {
+    border: none;
+    background-color: #f0f0f0;
+    color: black;
+    box-shadow: 5px 2px 8px #888888;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    padding: 6px 14px 6px 14px;
+    border-radius: 20px;
+}
+
+#userselect {
+    border: none;
+    background-color: green;
+    color: white;
+    box-shadow: 5px 2px 8px #888888;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    padding: 6px 14px 6px 14px;
+    border-radius: 20px;
+}
+
+#usersearch {
+    margin-left: 200px;
+    /* float: right; */
+    background-color: #f9f9f9;
+}
+
+
+
+#teamicon{
+    float:left;
+}
+
+
+/* .modalcenter {
+    position:fixed;
+    left: 0;
+    right:0;
+    top:0;
+    bottom: 0;
+    margin:auto;
+    display: table;
+} */
+
+  /* User Css Ends Here */
+
+.rotate {
+    display: inline-block;
+}
+
+button[aria-expanded='true'] > .rotate {
+    transform: rotate(90deg);
+}
+
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+hr {
+    color: green;
+    height: 5px;
+    margin-top: 5px;
+}
+
+.top {
+    background-color: green;
+}
+
+b {
+    color: black;
+}
+
+.ui-sortable tr {
+    cursor: pointer;
+}
+
+    .ui-sortable tr:hover {
+        background: rgba(244,251,17,0.45);
+    }
+
+.wrapper {
+    padding: 25px;
+    max-width: 460 px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.right {
+    float: right;
+    border-radius: 20px;
+}
+
+.wrapper .item {
+    background: white;
+    color: #fff;
+    display: flex;
+    border-radius: 3px;
+    border-style: double;
+    border-color: green;
+    padding: 12px 17px;
+    margin-bottom: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .wrapper .item :last-child {
+        margin-bottom: 0px;
+    }
+
+    .wrapper .item .text {
+        font-size: 18 px;
+        cursor: move;
+        color: black;
+    }
+
+#upload {
+    border-radius: 20px;
+    text-align: right;
+}
+
+.image {
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+p {
+    font-weight: lighter;
+}

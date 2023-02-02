@@ -1,0 +1,605 @@
+﻿@model Assignment1.Models.PmModel
+
+@{
+    ViewData["Title"] = "_SelectAsset";
+}
+
+<!-- select asset new view-->
+
+     <a asp-controller="PM" asp-action="Index"><span class="float-end me-1">
+            <button type="button" class="btn-close"></span></button>
+     </a>
+
+    <h4 class="modal-title mx-4 mt-3">Select Asset</h4>
+  <div class="line"></div>
+  <br>
+  <span class="float-end">
+    <div class="input-group">
+      <input type="search" class="form-control rounded-pill mx-4" placeholder="Search..." aria-label="Search"
+        aria-describedby="search-addon" />
+    </div>
+  </span>
+  <p class="mx-4">Which Asset would you like to attach this PM to?</p>
+  <br>
+  <!-------------------------------------------------------- buttons of select---------------------------------------->
+  <div class="try">
+    <span class="float-end pe-3 pb-3">
+      <!--<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Collapse All </a> | <a href="#">Deselect All</a> | <a href="#">Select All</a>-->
+      <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="collapse"
+        data-bs-target="#collapseExample">Collapse All</button>
+      <button type="button" class="btn btn-danger btn-sm" onclick="deselectAll()" value="Deselect All">Deselect
+        All</button>
+      <button type="button" class="btn btn-success btn-sm" onclick="selectAll()" value="Select All">Select All</button>
+    </span>
+  </div>
+  <br>
+  <br>
+  <br>
+<!---------------------------------------------------checkbox code---------------------------------->
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mx-3 style">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault"><i class="bi bi-exclamation-triangle-fill"></i>
+        Don't assign to an Asset
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+<!-- -------------------------------------collapsible checkbox------------------------------------------>
+  
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-5 mx-3 style" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Cake Donuts Line "
+        id="select_all">
+
+                                                            <!-- checkbox menu-->
+
+      <div class="rotate"><i class="bi-bi-caret-right-square"></i></div>
+      <label class="form-check-label" for="flexCheckDefault1"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Cake Donuts Line
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+                                                    
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input
+        class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Depositer"
+        id="flexCheckDefault2">
+      <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Depositer
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input
+        class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Dough Former"
+        id="flexCheckDefault3">
+      <label class="form-check-label" for="flexCheckDefault3"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Dough Former
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input
+        class="form-check-input messageCheckbox" type="checkbox" name="boxCheck"
+        value="Dual Fuel Fryer : Cake Donuts Line" id="flexCheckDefault4">
+      <label class="form-check-label" for="flexCheckDefault4"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Dual Fuel Fryer : Cake Donuts Line
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input
+        class="form-check-input messageCheckbox" type="checkbox" name="boxCheck"
+        value="Frying Oil Filtration: Cake Donuts Line" id="flexCheckDefault5">
+      <label class="form-check-label" for="flexCheckDefault5"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Frying Oil Filtration: Cake Donuts Line
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input
+        class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Sugaring Machine"
+        id="flexCheckDefault6">
+      <label class="form-check-label" for="flexCheckDefault6"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Sugaring Machine
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+
+
+  <!--------------------------------------------------------- second colaps-------------------------------------------------->
+
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Yeast Raised Line"
+        id="flexCheckDefault7">
+      <label class="form-check-label" for="flexCheckDefault7"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Yeast Raised Line
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+                                                        
+                                                                <!-- checkbox menu-->
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Cross Roller/Sheeter"
+        id="flexCheckDefault8">
+      <label class="form-check-label" for="flexCheckDefault8"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Cross Roller/Sheeter
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Cutting Station"
+        id="flexCheckDefault9">
+      <label class="form-check-label" for="flexCheckDefault9"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Cutting Station
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Dough Former"
+        id="flexCheckDefault10">
+      <label class="form-check-label" for="flexCheckDefault10"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Dough Former
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck"
+        value="Dual Fuel Fryer: Yeast Raised Line" id="flexCheckDefault11">
+      <label class="form-check-label" for="flexCheckDefault11"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Dual Fuel Fryer: Yeast Raised Line
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Flour Duster"
+        id="flexCheckDefault12">
+      <label class="form-check-label" for="flexCheckDefault12"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Flour Duster
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Frying Oil Filtration"
+        id="flexCheckDefault13">
+      <label class="form-check-label" for="flexCheckDefault13"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Frying Oil Filtration
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+  <div class="d-grid col-12 mx-auto" id="aBtnGroup">
+    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample">
+      <input class="form-check-input messageCheckbox" type="checkbox" name="boxCheck" value="Glazer"
+        id="flexCheckDefault14">
+      <label class="form-check-label" for="flexCheckDefault14"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+        Glazer
+      </label>
+      <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+    </button>
+  </div>
+
+
+
+  <div class="ms-4">
+      Selected Value: 
+      <span id="selectedVal"></span>
+      <div class="row">
+        <div class="col-md-4">
+        <form asp-action="Edit" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PM_Id" />
+            <div class="form-group">
+                
+                <input asp-for="PM_Name" class="form-control" type="hidden" />
+                <span asp-validation-for="PM_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset" class="control-label" ></label>
+                <input asp-for="Asset" class="form-control" id="assetentry"/>
+                <span asp-validation-for="Asset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <input asp-for="Schedules" class="form-control" type="hidden" />
+                <span asp-validation-for="Schedules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <input asp-for="Assigned_To" class="form-control" type="hidden"/>
+                <span asp-validation-for="Assigned_To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <input asp-for="Location" class="form-control" type="hidden"/>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+  </div>
+
+
+  <div class="submit">
+    <span class="float-end me-3">
+      <button type="button" class="btn btn-success rounded-pill select mb-5" data-bs-dismiss="modal">Select</button>
+      <button type="button" class="btn btn-secondary rounded-pill cancel mb-5" data-bs-dismiss="modal">Cancel</button>
+    </span>
+  </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+    function selectAll() {
+      let boxCheck = document.getElementsByName("boxCheck");
+      let boxCheckLen = boxCheck.length;
+      for (var x = 0; x < boxCheckLen; x++) {
+        boxCheck[x].checked = true;
+      }
+    }
+
+    function deselectAll() {
+      let boxCheck = document.getElementsByName("boxCheck");
+      let boxCheckLen = boxCheck.length;
+      for (var x = 0; x < boxCheckLen; x++) {
+        boxCheck[x].checked = false;
+      }
+    }
+
+$(document).ready(function() {
+
+// Get click event, assign button to var, and get values from that var
+$('#aBtnGroup input').on('click', function() {
+var thisBtn = $(this);
+
+thisBtn.addClass('active').siblings().removeClass('active');
+var btnText = thisBtn.text();
+var btnValue = thisBtn.val();
+console.log(btnText + ' - ' + btnValue);
+$('#assetentry').val(btnValue);
+$('#selectedVal').text(btnValue);
+});
+
+// You can use this to set default value
+// It will fire above click event which will do the updates for you
+$('#aBtnGroup button[value="M"]').click();
+});
+
+</script>
+
+<!-- Select asset new view ends here-->
+@*
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>*@
+
+@*<div>
+    <h4>PmModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            name
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.PM_Name
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Asset)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Asset)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Schedules)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Schedules)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Assigned_To)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Assigned_To)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PM_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+
+
+   <!-- The Modal -->
+   @* <div class="modal" id="myModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">*@
+    
+
+          <!-- Modal Header -->
+         @* <div class="modal-header">*@
+           
+         @* </div>     *@     
+    
+
+          <!-- Modal body -->
+          @*<div class="modal-body">*@
+        @*<div class="row" style="background-color: green;">
+          <span class="float-end">
+                     <div class="input-group">
+                     <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" />
+                     </div>
+                     </span>
+            <p>Which Asset would you like to attach this PM to?</p>
+          </div>*@
+@*<div>
+    <h4>PmModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            name
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.PM_Name
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Asset)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Asset)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Schedules)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Schedules)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Assigned_To)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Assigned_To)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PM_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PM_Id" />
+            <div class="form-group">
+                <label asp-for="PM_Name" class="control-label" type="hidden"></label>
+                <input asp-for="PM_Name" class="form-control" type="hidden"/>
+                <span asp-validation-for="PM_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset" class="control-label" ></label>
+                <input asp-for="Asset" class="form-control" />
+                <span asp-validation-for="Asset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedules" class="control-label" type="hidden"></label>
+                <input asp-for="Schedules" class="form-control" type="hidden" />
+                <span asp-validation-for="Schedules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assigned_To" class="control-label" type="hidden"></label>
+                <input asp-for="Assigned_To" class="form-control" type="hidden"/>
+                <span asp-validation-for="Assigned_To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label" type="hidden"></label>
+                <input asp-for="Location" class="form-control" type="hidden"/>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+
+
+        @*  <div class="try">
+          <span class="float-end pe-3 pb-3">
+          <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Collapse All </a> | <a href="#">Deselect All</a> | <a href="#">Select All</a>
+          </span>
+          </div>
+          
+          <button class="text-start mx-3 style" data-bs-toggle="collapse" data-bs-target="#sample" aria-expanded="false" aria-controls="sample">
+          	<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  				<label class="form-check-label" for="flexCheckDefault"><i class="bi bi-exclamation-triangle-fill"></i>
+    				Don't assign to an Asset
+  				</label>
+                <span id="sample"></span>
+          </button>
+                              
+        <button class="text-start mt-5 mx-3 style" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <input class="form-check-input check" type="checkbox" value="" id="select_all">
+              <div class="rotate"><i class = "bi-bi-caret-right-square"></i></div>
+                <label class="form-check-label" for="flexCheckDefault1"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Cake Donuts Line                    
+                </label>
+              <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Depositer
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Dough Former
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault2">
+                <label class="form-check-label" for="flexCheckDefault2"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Dual Fuel Fryer : Cake Donuts Line
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault3">
+                <label class="form-check-label" for="flexCheckDefault3"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Frying Oil Filtration: Cake Donuts Line
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+
+               
+              <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample"><input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault4">
+                <label class="form-check-label" for="flexCheckDefault4"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                  Sugaring Machine
+                </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+              </button>
+          
+        </button> 
+          
+    
+         
+      <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
+      	<input class="form-check-input check" type="checkbox" value="" id="flexCheckDefault5">
+  			<label class="form-check-label" for="flexCheckDefault5"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+    			Yeast Raised Line
+  			</label>
+            <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6">
+              <label class="form-check-label" for="flexCheckDefault6"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Cross Roller/Sheeter
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7">
+              <label class="form-check-label" for="flexCheckDefault7"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Cutting Station
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+              <label class="form-check-label" for="flexCheckDefault8"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Dough Former
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault9">
+                <label class="form-check-label" for="flexCheckDefault9"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Dual Fuel Fryer: Yeast Raised Line
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault10">
+                <label class="form-check-label" for="flexCheckDefault10"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                    Flour Duster
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault11">
+                <label class="form-check-label" for="flexCheckDefault11"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Frying Oil Filtration
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+            <button class="text-start mt-1 ms-5 me-3 collapse" id="collapseExample1">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault12">
+               <label class="form-check-label" for="flexCheckDefault12"><i class="fa-fw fa-solid fa-cube mr-0"></i>
+                Glazer
+              </label>
+                  <span class="float-end me-1"><i class="bi bi-question-circle-fill"></i></span>
+            </button>
+
+      </button>
+    
+          <!-- Modal footer -->
+         @* <div class="modal-footer">
+              <button type="button" class="btn btn-success rounded-pill select" data-bs-dismiss="modal">Select</button>
+            <button type="button" class="btn btn-secondary rounded-pill cancel" data-bs-dismiss="modal">Cancel</button>
+          </div>
+    
+  @*      </div>
+      </div>
+    </div>*@
+
+
+
+    

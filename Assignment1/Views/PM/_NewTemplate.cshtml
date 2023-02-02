@@ -1,0 +1,519 @@
+﻿ @model IEnumerable<Assignment1.Models.PmModel> 
+ @{
+ //c# script here
+ }
+
+
+
+ <div>
+    <h3>I am in Partial View</h3>
+</div>
+<a class="btn btn-success addToDash addtoDashboard" data-bs-toggle="modal" href="#CreateModal"><i class="bi bi-plus-square"></i>Asset Viewer</a>
+  <div class="modal" id="CreateModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+               
+                <div class="modal-header">
+                    <h4 class="modal-title">Please fill out the information below</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+
+
+                </div>
+
+                <!-- Modal body-->
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="template" id="new_template" value="Blank Template">
+                        <label class="form-check-label" for="exampleRadios1">
+                          Blank Template
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="template" id="existing_template" value="Copy from an exisiting template">
+                        <label class="form-check-label" for="exampleRadios2">
+                          Copy from an exisiting template
+                        </label>
+                      </div>
+                       
+                <hr>
+                    
+                <div class="mb-3">
+                    
+                    <label for="New Template Name" class="form-label">New Template Name</label>
+                    <input type="text" class="form-control form-control-sm" id="new_template_name"  style="width:25%">
+                    
+                </div>
+
+
+
+
+                <hr>
+               
+                <span class="col-6 start-0">Pick a PM Template to copy from your location or even your fellow manager's locaton: <span>
+                    <span class="float-end">
+                       <div class="input-group rounded">
+                           <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                           <span class="input-group-text border-0" id="search-addon">
+                            <i class="bi bi-search"></i>
+                           </span>
+                       </div>
+                    </span>
+               
+            
+
+                </div>
+
+
+
+                <!--Delicious Donuts Production Facility-->
+
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Delicious_Donuts"
+                    aria-expanded="false" aria-controls="collapse_Delicious_Donuts">
+                    
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDelicious" style="background-color:transparent;">
+                    <div class="rotate"> <i class="bi bi-caret-right-square"></i> </div>
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        <i class="bi bi-house-door-fill"></i>
+                        Delicious Donuts Production Facility
+                    </label>   
+                </button>
+
+                @foreach(var pm in Model)
+                {
+                @if (pm.Location == "Delicious Donuts Production Facility")
+                {
+                    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious" onchange="change_color(this);">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        @pm.PM_Name
+                    </label>
+                </button>
+
+                }
+
+                }
+
+                
+                @*<button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDelicious">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        Annual Inspection- Frying Oil Filtration: Cake Donuts Line > Cake Donuts Line
+                    </label>
+                </button>*@
+ 
+                
+                <!--Greendale Poultry Farm-->
+
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Greendale"
+                    aria-expanded="false" aria-controls="collapse_Greendale">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckGreendale">
+                    <label class="form-check-label" for="flexCheckGreendale">
+                        <i class="bi bi-house-door-fill"></i>
+                        Greendale Poultry Farm
+                    </label>
+                </button>
+                
+                @foreach(var pm in Model)
+                {
+                @if (pm.Location == "Greendale Poultry Farm")
+                {
+                    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious" onchange="change_color(this);">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        @pm.PM_Name
+                    </label>
+                </button>
+
+                }
+
+                }
+@*
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Greendale">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckGreendale">
+                    <label class="form-check-label" for="flexCheckGreendale">
+                        Bi-Weekly Inspection- Feed Lines > Feed > Barn
+                    </label>
+                </button>*@
+
+               
+
+                <!--Milwaukee Machine Shop-->
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Milwaukee"
+                aria-expanded="false" aria-controls="collapse_Milwaukee">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckMilwaukee">
+                <label class="form-check-label" for="flexCheckMilwaukee">
+                    <i class="bi bi-house-door-fill"></i>
+                    Milwaukee Machine Shop
+                </label>
+                </button>
+
+                 @foreach(var pm in Model)
+                {
+                @if (pm.Location == "Milwaukee Machine Shop")
+                {
+                    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious" onchange="change_color(this);">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        @pm.PM_Name
+                    </label>
+                </button>
+
+                }
+
+                }
+@*
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Milwaukee">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckMilwaukee">
+                    <label class="form-check-label" for="flexCheckMilwaukee">
+                        <i class="bi bi-wrench-adjustable"></i>
+                        Blade Post Rack Lubrication- Large Band Saw > Band Saws > General Power Tools
+                    </label>
+                </button>*@
+
+                
+             <!--Nash Country Quarry-->
+             
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Nash"
+                aria-expanded="false" aria-controls="collapse_Nash">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckNash">
+                <label class="form-check-label" for="flexCheckNash">
+                    <i class="bi bi-house-door-fill"></i>
+                    Nash County Quarry
+                </label>
+                </button>
+
+                 @foreach(var pm in Model)
+                {
+                @if (pm.Location == "Nash County Quarry")
+                {
+                    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious" onchange="change_color(this);">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        @pm.PM_Name
+                    </label>
+                </button>
+
+                }
+
+                }
+
+
+
+              @*  <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Nash">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckNash">
+                    <label class="form-check-label" for="flexCheckNash">
+                        <i class="bi bi-wrench-adjustable"></i>
+                        My crawler job- Crawler Tractor - 002
+                    </label>
+                </button>*@
+
+
+                
+            <!--Winchester Golf Course-->
+
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Winchester"
+                aria-expanded="false" aria-controls="collapse_Winchester">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckWinchester">
+                <label class="form-check-label" for="flexCheckWinchester">
+                    <i class="bi bi-house-door-fill"></i>
+                    Winchester Golf Course
+                </label>
+                </button>
+
+                 @foreach(var pm in Model)
+                {
+                @if (pm.Location == "Winchester Golf Course")
+                {
+                    <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious" onchange="change_color(this);">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        @pm.PM_Name
+                    </label>
+                </button>
+
+                }
+
+                }
+
+                
+               @* <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Winchester">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckWinchester">
+                    <label class="form-check-label" for="flexCheckWinchester">
+                        <i class="bi bi-wrench-adjustable"></i>
+                    25 Mile Checklist- Cart 1 > Cart Fleet > Garage
+                </label>
+                </button>
+*@
+               
+               
+
+                <!-- Modal footer-->
+                <div class="modal-footer"> 
+       
+                    <button type="button" id="createbtn" class="btn btn-success rounded-pill"> <a asp-action="" >Create</a></button>
+                     
+                    <button type="button" class="btn btn-secondary rounded-pill close" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+<script src="~/js/PMajax.js"></script>
+
+
+
+
+<!--View 2 (New PM Template)-->
+@*<div class="modal" id="CreateModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+               
+                <div class="modal-header">
+                    <h4 class="modal-title">Please fill out the information below</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+
+
+                </div>
+
+                <!-- Modal body-->
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="template" id="new_template" value="Blank Template">
+                        <label class="form-check-label" for="exampleRadios1">
+                          Blank Template
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="template" id="existing_template" value="Copy from an exisiting template">
+                        <label class="form-check-label" for="exampleRadios2">
+                          Copy from an exisiting template
+                        </label>
+                      </div>
+                       
+                <hr>
+                    
+                <div class="mb-3">
+                    
+                    <label for="New Template Name" class="form-label">New Template Name</label>
+                    <input type="text" class="form-control form-control-sm" id="new_template_name"  style="width:25%">
+                    
+                </div>
+
+
+
+
+                <hr>
+               
+                <span class="col-6 start-0">Pick a PM Template to copy from your location or even your fellow manager's locaton: <span>
+                    <span class="float-end">
+                       <div class="input-group rounded">
+                           <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                           <span class="input-group-text border-0" id="search-addon">
+                            <i class="bi bi-search"></i>
+                           </span>
+                       </div>
+                    </span>
+               
+            
+
+                </div>
+
+
+
+                <!--Delicious Donuts Production Facility-->
+
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Delicious_Donuts"
+                    aria-expanded="false" aria-controls="collapse_Delicious_Donuts">
+                    <form>
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDelicious" style="background-color:transparent;">
+                    <div class="rotate"> <i class="bi bi-caret-right-square"></i> </div>
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        <i class="bi bi-house-door-fill"></i>
+                        Delicious Donuts Production Facility
+                    </label>
+                    </form>
+                </button>
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious" onchange="change_color(this);">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        Annual Inspection- Frying Oil Filtration > Yeast Raised Line
+                    </label>
+                </button>
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Delicious_Donuts"><input class="form-check-input"
+                        type="checkbox" value="" id="flexCheckDelicious">
+                    <label class="form-check-label" for="flexCheckDelicious">
+                        Annual Inspection- Frying Oil Filtration: Cake Donuts Line > Cake Donuts Line
+                    </label>
+                </button>
+ 
+                
+                <!--Greendale Poultry Farm-->
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Greendale"
+                    aria-expanded="false" aria-controls="collapse_Greendale">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckGreendale">
+                    <label class="form-check-label" for="flexCheckGreendale">
+                        <i class="bi bi-house-door-fill"></i>
+                        Greendale Poultry Farm
+                    </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Greendale">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckGreendale">
+                    <label class="form-check-label" for="flexCheckGreendale">
+                        Bi-Weekly Inspection- Feed Lines > Feed > Barn
+                    </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Greendale">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckGreendale">
+                    <label class="form-check-label" for="flexCheckGreendale">
+                        Bi-Weekly Inspection Tanks- Vehicles
+                    </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Greendale">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckGreendale">
+                    <label class="form-check-label" for="flexCheckGreendale">
+                        Daily Checklist- Heating > Air > Barn
+                    </label>
+                </button>
+
+
+                <!--Milwaukee Machine Shop-->
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Milwaukee"
+                aria-expanded="false" aria-controls="collapse_Milwaukee">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckMilwaukee">
+                <label class="form-check-label" for="flexCheckMilwaukee">
+                    <i class="bi bi-house-door-fill"></i>
+                    Milwaukee Machine Shop
+                </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Milwaukee">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckMilwaukee">
+                    <label class="form-check-label" for="flexCheckMilwaukee">
+                        <i class="bi bi-wrench-adjustable"></i>
+                        Blade Post Rack Lubrication- Large Band Saw > Band Saws > General Power Tools
+                    </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Milwaukee">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckMilwaukee">
+                    <label class="form-check-label" for="flexCheckMilwaukee">
+                        <i class="bi bi-wrench-adjustable"></i>
+                        Check Motor Belt Tension- Baileigh > Lathes
+                    </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Milwaukee">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckMilwaukee">
+                    <label class="form-check-label" for="flexCheckMilwaukee">
+                        <i class="bi bi-wrench-adjustable"></i>
+                        Check Outlets- Room 1
+                    </label>
+                </button>
+        
+                
+             <!--Nash Country Quarry-->
+             
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Nash"
+                aria-expanded="false" aria-controls="collapse_Nash">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckNash">
+                <label class="form-check-label" for="flexCheckNash">
+                    <i class="bi bi-house-door-fill"></i>
+                    Nash County Quarry
+                </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Nash">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckNash">
+                    <label class="form-check-label" for="flexCheckNash">
+                        <i class="bi bi-wrench-adjustable"></i>
+                        My crawler job- Crawler Tractor - 002
+                    </label>
+                </button>
+
+
+                
+            <!--Winchester Golf Course-->
+
+                <button class="text-start mt-1 mx-3" data-bs-toggle="collapse" data-bs-target="#collapse_Winchester"
+                aria-expanded="false" aria-controls="collapse_Winchester">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckWinchester">
+                <label class="form-check-label" for="flexCheckWinchester">
+                    <i class="bi bi-house-door-fill"></i>
+                    Winchester Golf Course
+                </label>
+                </button>
+
+                
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Winchester">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckWinchester">
+                    <label class="form-check-label" for="flexCheckWinchester">
+                        <i class="bi bi-wrench-adjustable"></i>
+                    25 Mile Checklist- Cart 1 > Cart Fleet > Garage
+                </label>
+                </button>
+
+               
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Winchester">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckWinchester">
+                    <label class="form-check-label" for="flexCheckWinchester">
+                        <i class="bi bi-wrench-adjustable"></i>
+                    Annual Flush- Water Heater > Mechanical Room > Clubhouse
+                </label>
+                </button>
+
+                <button class="text-start mt-1 ms-5 me-3 collapse" id="collapse_Winchester">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckWinchester">
+                    <label class="form-check-label" for="flexCheckWinchester">
+                        <i class="bi bi-wrench-adjustable"></i>
+                    Base Pan Drainage- Garage HVAC Unit 1 > Heating and Air > Shop Equipment > Garage
+                </label>
+                </button>
+
+                <!-- Modal footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success rounded-pill">@Html.ActionLink("Create","Create")</button>
+                    <button type="button" class="btn btn-secondary rounded-pill close" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+ <div class="modal" tabindex="-1" role="dialog" id="AssetList">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+*@
+
+
+
+<!--View 2 ends here-->
+
+

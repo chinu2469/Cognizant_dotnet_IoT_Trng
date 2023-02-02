@@ -1,0 +1,57 @@
+﻿@model Assignment1.Models.PmModel
+
+@{
+    ViewData["Title"] = "Details";
+    PmModel obj = new PmModel();
+    
+}
+
+<h1>Details</h1>
+
+<div>
+    
+    <h4>PmModel details of @Model.PM_Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            name = 
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.PM_Name
+        </dd>
+        <dt class = "col-sm-2">
+            asset = 
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Asset
+        </dd>
+        <dt class = "col-sm-2">
+            Schedules =
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Schedules
+        </dd>
+        <dt class = "col-sm-2">
+            Assigned_To =
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Assigned_To
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PM_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<span id="text">1</span>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="~/js/PMajax.js"></script>

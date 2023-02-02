@@ -1,0 +1,100 @@
+﻿
+@model IEnumerable<Assignment1.Models.CustDashboard>
+@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="cotainer p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary ">dash list</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-area="" asp-controller="CustDashboard" asp-action="CreateWidget" class="btn btn-primary"></a>
+               <i class="bi bi-plus-circle"></i> &nbsp; Create New pm
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+<table class = "table table-bordered table-striped" style="width:100%">
+    <caption>Table for Entries</caption>
+    <thead>
+        <tr>
+            <th>
+                TaskId
+            </th>
+            <th>
+                Type 
+            </th>
+            <th>
+                UserAsgnId 
+            </th>
+            <th>
+                AssetAsgnId 
+            </th>
+            <th>
+                DueDate
+            </th>
+            <th>
+                StartDate
+            </th>
+            <th>
+                EndDate
+            </th>
+            <th>
+                Cost
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @obj.TaskId
+                </td>
+                <td width="30%">
+                    @obj.Type
+                </td>
+                <td width="30%">
+                    @obj.UserAsgnId
+                </td>
+                <td width="30%">
+                    @obj.AssetAsgnId
+                </td>
+                <td width="30%">
+                    @obj.DueDate
+                </td>
+                <td width="30%">
+                    @obj.StartDate
+                </td>
+                <td width="30%">
+                    @obj.EndDate
+                </td>
+                <td width="30%">
+                    @obj.Cost
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a class="btn btn-secondary mx-2" asp-controller="CustDashboard" asp-action="Edit" asp-route-id="@obj.TaskId"> <i class="bi bi-pencil-square"></i> Edit</a>
+                        <a class="btn btn-danger mx-2" asp-area="" asp-controller="CustDashboard" asp-action="Delete" asp-route-id="@obj.TaskId">  delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    
+
+</table>
+</div>
+
+<!--TaskId	Type	UserAsgnId	AssetAsgnId	DueDate	StartDate	EndDate	Cost-->

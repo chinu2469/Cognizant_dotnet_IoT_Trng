@@ -1,0 +1,162 @@
+﻿@model Assignment1.Models.PmModel
+
+@{
+    ViewData["Title"] = "_asset";
+}
+
+
+@*  
+<div class="modal" id="assetModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">*@
+
+      <!-- Modal Header -->
+     @* <div class="modal-header">*@
+        <h4 class="modal-title col-9"> Asset Viewer
+            <a asp-controller="PM" asp-action="Index"> 
+           <button type="button" class="btn-close col-3" style="float :right;" ></button>
+           
+       </a></h4>
+       
+      
+   <div>
+      <!-- Modal body -->
+      @*<div class="modal-body">
+        <div class="container">*@
+            <div class="row" style="background-color: green;">
+                <div class="col-9">
+                  <b style="color: white; ">@Model.Asset</b>   
+                </div>
+                <div class="btn-group col-3" role="group">
+                  <button type="button" class="top" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Number of open PM,WO etc for this asset">
+                    <i class="bi bi-app-indicator"></i> <!--Notification icon-->
+                  </button>
+                  <button type="button" class="top" data-bs-toggle="tooltip" data-bs-placement="top" title="Print QR codes for reporting a problem">
+                    <i class="bi bi-qr-code"></i> <!-- QR icon-->
+                  </button>
+                  <button type="button" class="top" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
+                    <i class="bi bi-gear"></i> <!-- Settings Icon-->
+                  </button>
+                </div>
+            </div>
+            <div class="row" style="background-color: rgb(28, 141, 28);">
+                 <div class="col-2">
+                    <img class = "image" src="https://img.icons8.com/ios-filled/344/gear.png">
+                </div>
+              <div class="col-6"  >
+                <i class="bi bi-info-circle-fill" style="color: white;">Information</i>
+                <hr>
+                <b style="color: white;">ID : </b>@Model.PM_Id  
+                <br>
+                <b style="color: white;">PM Name : </b> @Model.PM_Name
+                <br>
+                <b style="color: white;">Assigned To :  </b> @Model.Assigned_To
+                <br>
+                <b style="color: white;">Location : </b> @Model.Location
+               </div>  
+             </div>
+            <hr>
+              <div class="btn-group" role="group" aria-label="Basic example" data-bs-toggle="button"> <!-- Menu Row with buttons-->
+                <button type="button" class="btn btn-light" onclick="ShowAndHide()"><i class="bi bi-info-circle-fill"></i>Info</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-wrench-adjustable-circle"></i>PMs</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-calendar3"></i> WOs</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-gear-wide-connected"></i> Parts</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-person-rolodex"></i> Vendors</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-list-ul"></i> Log</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-clipboard-data"></i> Reports</button>
+                <button type="button" class="btn btn-light"><i class="bi bi-boxes"></i> Children</button>
+              </div>
+          <hr>
+         <div id="info" style="display: none;">
+             <i class="bi bi-info-circle-fill" style="color: green;"></i> <b>Information- </b>Track any piece of information for your asset including IDs, meter readings, manuals and more.
+                 
+                <div id="editor"> 
+
+                </div> 
+                <button class="right"><i class="bi bi-cloud-arrow-down"></i></button> 
+                <button id="cmd" class="right"><i class="bi bi-printer"></i></button>
+          <br>
+                    <i class="bi bi-box" style="color: green;"></i><b>Name</b> @Model.Asset <b>    # @Model.PM_Id</b>
+                     <i class="bi bi-box"></i><!-- for parent asset link-->
+          <br>
+                    <i class="bi bi-map" style="color: green;"></i><b>Map :</b>
+          <br>
+          <hr>
+        <div class="wrapper" id="content"> <!-- Draggable Menu-->
+          <div class="item">
+            <span class="text"><i class="bi bi-keyboard"></i>Name : @Model.Asset</span>
+          </div>
+          <div class="item">
+            <span class="text"><i class="bi bi-keyboard"></i>Assigned to : @Model.Assigned_To</span>
+          </div>
+          <div class="item">
+            <span class="text"><i class="bi bi-hash"></i>Location : @Model.Location</span>
+          </div>
+          <div class="item">
+            <span class="text"></i>Manual   <input type="file" id="upload">Upload Document</input></span>
+          </div>
+         @* <div class="item">
+                <span class="text"><i class="bi bi-card-checklist"></i>Dropdown 
+                <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"> Dropdown
+                 </button>
+                 <div class="dropdown-menu" aria-labelledby="triggerId">
+                     <button class="dropdown-item" href="#">Action</button>
+                     <button class="dropdown-item disabled" href="#">Disabled action</button>
+                 </div>
+          </div></span>
+           
+          </div>*@
+        </div>
+      
+        <hr>
+        @*<div>
+          <button class="btn btn-success"><i class="bi bi-plus-square"></i>Add Field</button>
+        </div>*@
+      </div>
+     </div> <!-- modal body ends here-->
+     
+
+      <!-- Modal footer -->
+     @* <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" style="border-radius: 20px;" >Done</button>
+     
+  </div>*@
+
+  
+ <script type="text/javascript">
+    
+
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('PM-file.pdf');
+});
+
+   function ShowAndHide() {
+    var x = document.getElementById('info');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+  const dragArea= document.querySelector(".wrapper");
+  new Sortable(dragArea,{
+    animation:350
+  }); // Query for draggable table
+  $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});  //Query for tooltip
+
+</script>

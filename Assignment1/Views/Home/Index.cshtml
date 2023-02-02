@@ -1,0 +1,518 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<!--custome dashboard page-->
+<div class="row mt-3">
+                <span>
+                    <span class="custom-dashtext">Custom Dashboards</span>
+                    <span class="float-end">
+                        <a class="btn btn-success addToDash addtoDashboard"><i
+                                class="bi bi-plus-lg me-1 fw-bold"></i>Add to
+                            Dashboard</a>
+                        <a class="btn addToDash rotate-dash"><i class="bi bi-reception-4"></i>Rotate
+                            Dashboards
+                         </a>
+                        <a class="btn btn-danger addToDash"><i class="bi bi-youtube text-white"></i></a>
+                    </span>
+                </span>
+            </div>
+            <hr>
+            <div class="custom-dashboard">
+                <div class="row mt-3">S
+                    <span>
+                        <span><a  asp-controller="CustDashboard" asp-action="Index" class="btn addToDash rotate-dash"><i
+                                    class="bi bi-arrow-repeat me-1 fw-bold"></i>Change
+                                Dashboards</a>
+                        </span>
+                        <span class="newdash"><input class="newdash-textbox align" type="text" name="" id=""
+                                placeholder="New Dashboard"></span>
+                        <span class="float-end">
+                            <a href="#" class="btn addToDash rotate-dash"><i
+                                    class="bi bi-arrow-90deg-right text-black"></i></a>
+                            <a href="#" class="btn addToDash rotate-dash"><i class="fa-solid fa-paste"></i></a>
+                            <a href="#" class="btn btn-danger addToDash"><i class="bi bi-archive-fill"></i></a>
+                        </span>
+                    </span>
+                    <span class="mt-2">
+                        <span class="float-end">
+                            <a href="#" class="btn addToDash rotate-dash"><i class="fa-solid fa-print"></i></a>
+                            <a href="#" class="btn addToDash rotate-dash"><i class="bi bi-bell"></i></a>
+                        </span>
+                    </span>
+                </div>
+                <div class="row mt-3">
+                    <span>
+                        <span>
+                            <a class="btn addWidgetBtn" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"><i class="fa-solid fa-plus"></i></a>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Widget</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <p
+                                style="box-shadow: inset 0 -3px 0 0 #D3D3D3; padding-top:10px; padding-bottom:10px; margin:0px">
+                                Simply let us
+                                know what you
+                                want and
+                                we will built the widget for you.</p>
+                            <br>
+                            <!--Function of widget-->
+                            <div class="form small">
+                                <b>I want...</b> <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="function" id="tasks"
+                                        value="Tasks">
+                                    <label class="form-check-label" for="Tasks">
+                                        Tasks
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="function" id="users"
+                                        value="Users">
+                                    <label class="form-check-label" for="Users">
+                                        Users
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="function" id="assets"
+                                        value="Assets">
+                                    <label class="form-check-label" for="Assets">
+                                        Assets
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="hiddenForm d-none small">
+                                <!--Type of task-->
+                                <div class="form">
+                                    <span>
+                                        <span><b>That are...</b></span>
+                                        <span class="selection float-end">
+                                            <a href="#" id="deselect">Deselect
+                                                All</a><a href="#" id="select"> |
+                                                Select All</a>
+                                            <br>
+                                        </span>
+                                    </span>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="tasktype" id="pms"
+                                            value="PMs">
+                                        <label class="form-check-label" for="PMs">PMs</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="plannedwos" name="tasktype"
+                                            value="Planned WOs">
+                                        <label class="form-check-label" for="Planned WOs">Planned WOs</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="unplannedwos"
+                                            name="tasktype" value="Unplanned WOs">
+                                        <label class="form-check-label" for="Unplanned WOs">Unplanned WOs</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="workrequests"
+                                            name="tasktype" value="Work Requests">
+                                        <label class="form-check-label" for="Work Requests">Work Requests</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="partthreshold"
+                                            name="tasktype" value="Part Threshold">
+                                        <label class="form-check-label" for="Part Threshold">Part Threshold</label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--status-->
+                                <div class="form">
+                                    <b>With a status of...</b> <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="open"
+                                            value="Open">
+                                        <label class="form-check-label" for="Open">
+                                            Open
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="status" id="completed"
+                                            value="Completed">
+                                        <label class="form-check-label" for="Completed">
+                                            Completed
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <div class="dropdown">With a priority of
+                                            <a class="dropdown dropdownLink" href="#" role="button"
+                                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                All
+                                            </a>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <li><a class="dropdown-item priorityList" href="#">All</a></li>
+                                                <li><a class="dropdown-item priorityList" href="#">Low Priority</a></li>
+                                                <li><a class="dropdown-item priorityList" href="#">Medium Priority</a>
+                                                </li>
+                                                <li><a class="dropdown-item priorityList" href="#">High Priority</a>
+                                                </li>
+                                                <li><a class="dropdown-item priorityList" href="#">On Hold</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--due date-->
+                                <div class="form">
+                                    <b>
+                                        <div class="dropdown">With a
+                                            <a class="dropdown dueDropdownLink" href="#" role="button"
+                                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Due
+                                            </a> Date in...
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <li><a class="dropdown-item dueList" href="#">Due</a></li>
+                                                <li><a class="dropdown-item dueList" href="#">Completed</a></li>
+                                                <li><a class="dropdown-item dueList" href="#">Created</a></li>
+                                            </ul>
+                                        </div>
+                                    </b>
+                                </div>
+                                <hr>
+                                <!--graphtype-->
+                                <div class="form">
+                                    <b>Viewed as a...</b> <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="viewtype" id="viewtype"
+                                            value="Tile">
+                                        <label class="form-check-label" for="Tile">Tile</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="listview" name="viewtype"
+                                            value="List View">
+                                        <label class="form-check-label" for="List View">List View</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="piegraph" name="viewtype"
+                                            value="Pie Graph">
+                                        <label class="form-check-label" for="Pie Graph">Pie Graph</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="linegraph" name="viewtype"
+                                            value="Line Graph">
+                                        <label class="form-check-label" for="Line Graph">Line Graph</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="bargraph" name="viewtype"
+                                            value="Bar Graph">
+                                        <label class="form-check-label" for="Bar Graph">Bar Graph</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="calendar" name="viewtype"
+                                            value="Calendar">
+                                        <label class="form-check-label" for="Calendar">Calendar</label>
+                                    </div>
+                                </div>
+                                <!-- Line Graph-->
+                                <div class="form line-graph d-none"><br>
+                                    <b>Displaying the following information...</b><br>
+                                    <i>Please choose what data would you like to view and how would you like to split it
+                                        up.</i><br><br>
+                                    <b class="lh-lg">1. I would like to view...</b><br>
+                                    <i>Number of</i><br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="numberOf" id="tasks"
+                                            value="Tasks">
+                                        <label class="form-check-label" for="Tasks">Tasks</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="plannedVsUnplanned"
+                                            name="numberOf" value="Planned vs Unplanned">
+                                        <label class="form-check-label" for="planned vs unplanned">Planned vs
+                                            Unplanned</label>
+                                    </div>
+                                    <br><br>
+                                    <b class="lh-lg">2. Split it up...</b><br>
+                                    <i>Number of</i><br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="split" id="byMonthly"
+                                            value="By Monthly">
+                                        <label class="form-check-label" for="Tasks">By Monthly</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="byWeekly" name="split"
+                                            value="By Weekly">
+                                        <label class="form-check-label" for="planned vs unplanned">By Weekly</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="byDaily" name="split"
+                                            value="By Daily">
+                                        <label class="form-check-label" for="planned vs unplanned">By Daily</label>
+                                    </div>
+                                    <br><br>
+                                    <b class="lh-lg">With extra options...</b><br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="extraoptions"
+                                            value="extraoptions">
+                                        <label class="form-check-label" for="extraoptions">Split the graphs by custom
+                                            tags: <a href="#" class="text-decoration-none">Pick custom tag</a></label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--assignee-->
+                                <div class="form">
+                                    <b>Filtered by who it is Assigned to? </b> <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="assignee" id="assignee_yes"
+                                            value="Yes">
+                                        <label class="form-check-label" for="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="assignee" id="assignee_no"
+                                            value="No">
+                                        <label class="form-check-label" for="No">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row assignment d-none">
+                                    <div class="col">
+                                        <p>Teams: <span>
+                                                <span class="selection float-end">
+                                                    <a href="#" id="deselectTeam">Deselect
+                                                        All</a><a href="#" id="selectTeam"> |
+                                                        Select All</a>
+                                                    <br>
+                                                </span>
+                                            </span> </p>
+                                        <div class="option option-team">
+                                            <b class="">Any Team</b>
+                                        </div>
+                                        <div class="option option-team">
+                                            <i class="fa-solid fa-check d-none me-1"></i><i
+                                                class="fa-solid fa-users me-2"></i><span class="">Manager</span>
+                                        </div>
+                                        <div class="option option-team">
+                                            <i class="fa-solid fa-check d-none me-1"></i><i
+                                                class="fa-solid fa-users me-2"></i><span class="">Technician</span>
+                                        </div>
+                                        <div class="option option-team">
+                                            <i class="fa-solid fa-check d-none me-1"></i><i
+                                                class="fa-solid fa-users me-2"></i><span class="">View Only</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <p>Users: <span>
+                                                <span class="selection float-end">
+                                                    <a href="#" id="deselectUser">Deselect
+                                                        All</a><a href="#" id="selectUser"> |
+                                                        Select All</a>
+                                                    <br>
+                                                </span>
+                                            </span></p>
+                                        <div class="option option-user">
+                                            <b class="">Any User</b>
+                                        </div>
+                                        <div class="option option-user">
+                                            <i class="fa-solid fa-check d-none me-1"></i><i
+                                                class="bi bi-person-fill me-2"></i><span class="">Sadiah Gogula</span>
+                                        </div>
+                                        <div class="option option-user">
+                                            <i class="fa-solid fa-check d-none me-2"></i></i><span
+                                                class="">Unassigned</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--location-->
+                                <div class="form">
+                                    <b>Filtered by Location?</b> <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="location" id="location_yes"
+                                            value="Yes">
+                                        <label class="form-check-label" for="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="location" id="location_no"
+                                            value="No">
+                                        <label class="form-check-label" for="No">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row location d-none">
+                                    <div class="col-6">
+                                        <p>Locations: <span>
+                                                <span class="selection float-end">
+                                                    <a href="#" id="deselectLocation">Deselect
+                                                        All</a><a href="#" id="selectLocation"> |
+                                                        Select All</a>
+                                                    <br>
+                                                </span>
+                                            </span> </p>
+                                        <div class="option option-location">
+                                            <b><i class="fa-solid fa-check d-none me-1"></i><span class="">Any
+                                                    Location</span></b>
+                                        </div>
+                                        <div class="option option-location">
+                                            <i class="fa-solid fa-check d-none me-1"></i></i><span
+                                                class="">undefined</span> <i
+                                                class="fa-solid fa-house me-1 ms-1"></i><span class="">First
+                                                Location</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--assetgroup-->
+                                <div class="form">
+                                    <b>Filtered to a group of Assets?</b> <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="assetgroup"
+                                            id="assetgroup_yes" value="Yes">
+                                        <label class="form-check-label" for="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="assetgroup"
+                                            id="assetgroup_no" value="No">
+                                        <label class="form-check-label" for="No">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="assets d-none">
+                                    <p class="">This option filters the Tasks above to only those that belong the group
+                                        of Assets generated from <span class="text-decoration-underline">all</span> of
+                                        the following fields and conditions:</p>
+                                    <p><a href="#" class="text-decoration-none ">Include </a><span class="small">Assets
+                                            that have </span><a href="#" class="text-decoration-none ">Select
+                                            Field</a><i class="fa-solid fa-trash-can text-danger ms-1"></i></p>
+                                </div>
+                                <hr>
+                                <!--advancedfilters-->
+                                <div class="form">
+                                    <b>Filtered with Advanced Filters?</b> <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="advfilter" id="adv_yes"
+                                            value="Yes">
+                                        <label class="form-check-label" for="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="advfilter" id="adv_no"
+                                            value="No">
+                                        <label class="form-check-label" for="No">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="advanced d-none">
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks with an </span>
+                                        <b class="">Estimated Time </b>
+                                        <a href="#" class=" text-decoration-none">longer or equal to </a>
+                                        <input type="number" name="" id="" class="advanced-number me-1">
+                                        <span class="">minutes...</span>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks with an </span>
+                                        <b class="">Number of Invoices </b>
+                                        <a href="#" class=" text-decoration-none">longer or equal to </a>
+                                        <input type="number" name="" id="" class="advanced-number me-1">
+                                        <span class="">...</span>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks with an </span>
+                                        <b class="">Number of Comments </b>
+                                        <a href="#" class=" text-decoration-none">longer or equal to </a>
+                                        <input type="number" name="" id="" class="advanced-number me-1">
+                                        <span class="">...</span>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks with an </span>
+                                        <b class="">Number of Deferments </b>
+                                        <a href="#" class=" text-decoration-none">longer or equal to </a>
+                                        <input type="number" name="" id="" class="advanced-number me-1">
+                                        <span class="">...</span>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks with an </span>
+                                        <b class="">Number of Due Date Changes </b>
+                                        <a href="#" class=" text-decoration-none">longer or equal to </a>
+                                        <input type="number" name="" id="" class="advanced-number me-1">
+                                        <span class="">...</span>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks <a href="#" class=" text-decoration-none">with </a> the
+                                            following </span>
+                                        <b class="">Custom Tags: </b>
+                                        <a href="#" class=" text-decoration-none">Pick Custom Tag </a>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks with a </span>
+                                        <b class="">Task Name </b>
+                                        <span class="">containing </span>
+                                        <input type="text" name="" id="">
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks that were </span>
+                                        <b class="">started from another Task's Instructions </b>
+                                        <span class="">...</span>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="" id="" class="me-1">
+                                        <span class="">Tasks that are </span>
+                                        <b class="">Not Assigned to an Asset </b>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--Name of widget-->
+                                <div class="form">
+                                    <div class="form-group">
+                                        <label for="Widgetname"><b>And finally name it...</b> <br></label>
+                                        <input class="form-control form-textbox" id="widgetname"
+                                            placeholder="New Widget">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer d-block">
+                        <span>
+                            <span>
+                                <b><i>Not able to build what you want? Let us know and we'll make it happen</i></b>
+                            </span>
+                            <span class="float-end">
+                                <button type="button" class="btn btn-success btn-footer" data-bs-dismiss="modal">Add</button>
+                                <button type="button" class="btn btn-secondary btn-footer" data-bs-dismiss="modal">Close</button>
+                            </span>
+                        </span>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        

@@ -1,0 +1,254 @@
+﻿@model Assignment1.Models.PmModel
+ @{
+    ViewData["Title"] = "Edit";
+ }
+
+
+
+<div id="PMEditTemplate">
+ <!--modal here down-->
+        <!--Top-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-11">
+                    <h3 class="mt-2 ">Edit PM Template</h3>
+                </div>
+                <div class="col-1 text-end">
+                    <a asp-controller="PM" asp-action="Index" class="btn btn-lg mt-2"> <i class="bi bi-x-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr style="height:3px" class="bg-success">
+            
+        <div class="container-fluid ml-2 mr-2">
+            <p>Edit the Template with instructions, parts and more. Please reach out if you need any help!</p>
+            <hr>
+        </div>
+
+        <!--Content-->
+       <div class="container-fluid ml-2 mr-2">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PM_Id" />
+                <div class="row">
+                <div class="col-10">
+                    <label asp-for="PM_Name" class="h6"></label>
+                    <input type="text" asp-for="PM_Name">
+                    <span asp-validation-for="PM_Name" class="text-danger"></span>
+                </div>
+                    <div class="col-2 text-end">
+                        <a><button class="badge rounded-pill bg-secondary"><i class="bi bi-wifi"></i></button></a>
+                        <a><button class="badge rounded-pill bg-success h6"><i class="bi bi-gear"></i> Settings</button></a>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-auto">
+                        <p class="h6">Belongs to: </p>
+                    </div>
+                    <div class="col-auto">
+                        <p class="text-success"><i class="bi bi-box"></i> Frying Oil Filtration - </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row mb-2">
+                    <div class="col-11">
+                        <label for="Description" class="h6">Description:</label>
+                        <input type="text" id="Description" name="Description">
+                    </div>
+                    <div class="col-1 text-center">
+                        <button class="h6 bg-secondary rounded-pill"><i class="bi bi-printer"></i> Print</button>
+                    </div>
+                </div>
+                <hr>
+                <a href="#"><button class="mt-1 btn btn-success btn-sm rounded-pill pr-1"><i class="bi bi-gear-wide-connected"></i> Add Part</button></a>
+                <hr>
+
+                <p class="h6">Tools:</p>
+                <a href="#"><button class="mt-1 btn btn-success btn-sm rounded-pill pr-1"><i class="bi bi-tools"></i> Add Tool</button></a>
+                <hr>
+
+                <div class="row">
+                <div class="col-9">
+                    <p class="h6">Introductions: <i title="Help" class="bi bi-question-circle-fill"></i></p>    
+                </div>
+                <div class="col-3 text-end">
+                    <a><button class=" rounded-pill bg-secondary"><i class="bi bi-tag-fill"></i> Tag Task </button></a>
+                    <a><button class="rounded-pill bg-warning h6 text-light"><i class="bi bi-lightning-charge-fill"></i> Preview this Task</button></a>
+                </div>
+                </div>
+       
+
+                <div class="form-group">
+                    <label asp-for="Asset" class="control-label"></label>
+                    <input asp-for="Asset" class="form-control" />
+                    <span asp-validation-for="Asset" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Schedules" class="control-label"></label>
+                    <input asp-for="Schedules" class="form-control" />
+                    <span asp-validation-for="Schedules" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Assigned_To" class="control-label"></label>
+                    <input asp-for="Assigned_To" class="form-control" />
+                    <span asp-validation-for="Assigned_To" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                     <label asp-for="Location" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                    <input type="submit"  value="Edit"  class="btn btn-success"/>
+                </div>
+            </form>
+
+            <div class="m-2 text-end">
+                <a><button asp-action="Index" class="rounded-pill btn btn-success btn-sm pr-1"> Exit </button></a>
+                <hr>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+ <!--
+                <p class="h6">Parts:</p>
+                <div class="row pt-1 pl-1 pr-1" style="background-color: #e7ebee;">
+                <div class="col-2">
+                    <i class="bi bi-gear-fill mr-1"> </i><input type="text" size="7" placeholder="1">
+                </div>
+                <div class="col-2">
+                    <p class="h6">Filter Cartidge - </p>
+                </div>
+                <div class="col-5">
+                    <p>33840B - Delicious Donut Production Facility</p>
+                </div>
+                <div class="col-3 text-end">
+                    <a href="#"><p class="h6 text-danger"><i class="bi bi-trash btn-lg"></i></p></a>
+                </div>
+                </div>
+     
+                
+               -->
+
+                @*      <div class="row">
+                <div>
+                    <input type="text" size="1" id="1" disabled value="1" class="text-center">
+                    <i class="bi bi-list-ul"> </i>
+                    <input type="text" value="Are there any leaks?">
+                </div>
+                <div class="text-warning ml-4">
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-plus-circle-fill"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-trash"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-wallet"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-file-earmark"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-diagram-2"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-link-45deg"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-chevron-down"></i></button>
+                </div>
+                <div>
+                    <button class="btn h6"><i class="bi bi-arrows-expand"></i></button>
+                    <input type="radio" id="1Radio" name="1Radio"> 
+                    <label for="1Radio"><input value="Yes" readonly size="8"></label>
+                </div>
+                <div>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-plus"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-trash"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-gear-fill"></i></button>
+                    <button class="btn h6" style="color: orangered;"><i class="bi bi-chevron-down"></i></button>
+                </div>
+                <div ml-5>
+                    <i title="Add instructions below" class="bi bi-box-arrow-in-down btn-lg"></i>
+                </div>
+                <div>
+                    <a><button id="AddInstruction" class="rounded-pill btn btn-success btn-sm pr-1"><i class="bi bi-plus-square"></i> Add Instructions </button></a>
+                    <hr>
+                </div>
+                </div>*@
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PM_Id" />
+            <div class="form-group">
+                <label asp-for="PM_Name" class="control-label" type="hidden"></label>
+                <input asp-for="PM_Name" class="form-control" type="hidden"/>
+                <span asp-validation-for="PM_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset" class="control-label" ></label>
+                <input asp-for="Asset" class="form-control" />
+                <span asp-validation-for="Asset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedules" class="control-label" type="hidden"></label>
+                <input asp-for="Schedules" class="form-control" type="hidden" />
+                <span asp-validation-for="Schedules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assigned_To" class="control-label" type="hidden"></label>
+                <input asp-for="Assigned_To" class="form-control" type="hidden"/>
+                <span asp-validation-for="Assigned_To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label" type="hidden"></label>
+                <input asp-for="Location" class="form-control" type="hidden"/>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+*@
+
+
+@*@model Assignment1.Models.PmModel*@
+@*
+<h4>PmModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PM_Id" />
+            <div class="form-group">
+                <label asp-for="PM_Name" class="control-label"></label>
+                <input asp-for="PM_Name" class="form-control" />
+                <span asp-validation-for="PM_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset" class="control-label"></label>
+                <input asp-for="Asset" class="form-control" />
+                <span asp-validation-for="Asset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedules" class="control-label"></label>
+                <input asp-for="Schedules" class="form-control" />
+                <span asp-validation-for="Schedules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assigned_To" class="control-label"></label>
+                <input asp-for="Assigned_To" class="form-control" />
+                <span asp-validation-for="Assigned_To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@

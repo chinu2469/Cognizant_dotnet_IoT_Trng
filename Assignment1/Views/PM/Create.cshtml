@@ -1,0 +1,578 @@
+﻿@model PmModel
+
+
+    @{ ViewData["Title"] = "Create"; }
+
+    <style>
+        .nobullet{
+            list-style-type:none;
+            text-align:left;
+        }
+
+        .line_style{
+
+            display:block;
+        }
+        i{
+            padding:5px;
+        }
+</style>
+
+    <h4>Please select an option below</h4>
+
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="template" id="new_template" value="Blank Template">
+        <label class="form-check-label" for="exampleRadios1">
+                              Blank Template
+                            </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="template" id="existing_template" value="Copy from an exisiting template">
+        <label class="form-check-label" for="exampleRadios2">
+                              Copy from an exisiting template
+                            </label>
+    </div>
+
+    <!--View Part 1-->
+    <div id="table_view" style="display:none">
+
+ 
+            <div id="error"></div>
+            <form asp-action="Create" name="form" id="form" onsubmit="return Validation()" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PM_Id" />
+                <table class="table table-bordered table-striped" style="width:100%; margin-top:1%">
+                    <colgroup>
+                        <col span="1" style="width: 16.66%;">
+                        <col span="1" style="width: 16.66%;">
+                        <col span="1" style="width: 33.32%;">
+                        <col span="1" style="width: 16.66%;">
+                        <col span="1" style="width: 16.66%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="col-sm-2">
+                                <label asp-for="PM_Name" class="control-label"></label>
+                                
+                            </th>
+                            <th class="col-sm-2">
+                                <label asp-for="Asset" class="control-label"></label>
+                               
+                            </th>
+                            <th>
+                                <label asp-for="Schedules" class="control-label"></label>
+                                
+                            </th>
+                            <th>
+                                <label asp-for="Assigned_To" class="control-label"></label>
+                               
+                            </th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                 
+                                 <input asp-for="PM_Name" class="form-control" id="pmname" name="PM_Name" placeholder="pm Name"/>
+                                 <span asp-validation-for="PM_Name" class="text-danger" id="valname"></span>
+                            </div>
+                        </td>
+                        <td> 
+                            <div class="form-group">
+                                 <input asp-for="Asset" class="form-control" name="Asset" id="asset" placeholder="Asset Name" />
+                                 <span asp-validation-for="Asset" class="text-danger" id="valasset"></span>
+                                 @*<input="Asset" class="form-control" type="text" placeholder="Asset Name"  />*@
+                                
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                
+                                 <input asp-for= "Schedules" name="Schedules" type='date' class="form-control" placeholder='Select-Date' id="schedules" required><br>
+                                 <span class="text-danger" id="valschedule"></span>
+                                @*<input type='date' class="form-control" id='datepicker2' placeholder='Select start-Date' style="width:auto">*@
+                            </div>    
+                            
+                        </td>
+                        <td>
+                            <div>
+                                 <input asp-for="Assigned_To" name="Assigned_to" class="form-control" id="assignedto" />
+                                 <span asp-validation-for="Assigned_To" class="text-danger" id="valassign"></span>
+                                 @*<input ="Assigned_To" class="form-control" type="text" placeholder="Unassigned"/>*@
+                                
+                            </div>
+                        </td>
+                        <td>
+                             <div class="form-group">
+                                <input type="submit" value="Submit" class="btn btn-success" />
+                             </div>
+                            @*<button type="Submit" value="save" class="btn btn-success" asp-action="Index">Submit</button>*@
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+
+
+        </div>
+    </div>
+    </div>
+    <!--id="form" action="https://localhost/PM/Create" method="get"-->
+    <!----------------------------------------------------------------------------View Part 2-------------------------------------------------------------->
+   
+
+    <div id="copy_template" style="display:none">
+       <div class=" container p-5 my-5 border">
+                    <span class="col-6 start-0"> <h4> Pick a PM Template to copy from your location or even your fellow manager's locaton: </h4> </span>
+                       <span class="float-end">
+                          <div class="input-group rounded">
+                              <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                              <span class="input-group-text border-0" id="search-addon">
+                               <i class="bi bi-search"></i>
+                               </span>
+                            </div>
+                       </span>
+                     </span>       
+        
+                    
+                   <!----------------------------------------------------------------------------dropdown-------------------------------------------------------------->
+
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" id="delcio">
+                         <i class="bi bi-house-door-fill"></i> Delicious Donuts Production Facility
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                           <ul>
+                          <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group" id="Delicious1">
+                              
+                               
+                          </div>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"  aria-controls="collapseTwo" id="greendale">
+                        <i class="bi bi-house-door-fill"></i>  Greendale Poultry Farm
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          <ul>
+                          <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group" id="Greendale1">
+                              
+                               
+                          </div>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"  aria-controls="collapseThree" id="milwaukee">
+                      <i class="bi bi-house-door-fill"></i> Milwaukee Machine Shop
+                      </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                      <div class="accordion-body" >
+                          <ul>
+                          <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group" id="Milwaukee1">
+                              
+                               
+                          </div>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"  aria-controls="collapseFour" id="nash">
+                       <i class="bi bi-house-door-fill"></i> Nash Country Quarry
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          <ul>
+                          <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group"  id="Nash1">
+                              
+                               
+                          </div>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive"  aria-controls="collapseFive" id="winchester" onclick="winchester(); this.onclick=null;">
+                         <i class="bi bi-house-door-fill"></i>  Winchester Golf Course
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          <ul>
+                          <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group"  id="Winchester1">
+                              
+                               
+                          </div>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix"  aria-controls="collapseSix" id="hgg" >
+                         <i class="bi bi-house-door-fill"></i> HGG
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                      <div class="accordion-body" id="aBtnGroup">
+                          <ul>
+                          <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group" id="HGG1">
+                              
+                               
+                          </div>
+                          </ul>
+                          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              
+                <button type="Submit" value="save" class="btn btn-success" asp-action="Index">Submit</button>
+            
+
+           
+
+        
+         
+         </div>
+    </div>
+   
+
+    <script src="~/js/PMajax.js"></script>
+
+    <!------------------------------------------------------------- Ajax call -------------------------------------------->
+<script>
+    var isBodyClicked1 = false;
+$("#delcio").on( "click",function () {             //Delicious direct call
+    
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44339/api/pmapi1',
+        success: function (pms) {
+            pmlist = pms;
+            console.log(pms);
+            
+            $.each(pms, function (i, pm) {
+                    if (pm.location == "Delicious Donuts Production Facility")
+                        $('#Delicious1').append('<input type="radio" name="Delicious_group" class="btn-check" id="btn' + pm.pM_Name + '" autocomplete="off" value="' + pm.pM_Name + '"><label class="btn btn-outline-success" for="btn' + pm.pM_Name + '"><li class="nobullet"" id="' + pm.pM_Id + '"> ' + pm.pM_Name + '</li></label >');
+
+                    
+            });
+            
+        },
+        error: function () {
+            console.log("error occurs")
+        },
+
+    });
+    
+});
+var isBodyClicked2 = false;
+
+$("#greendale").on( "click",function greendale() {             //Greendale direct call
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44339/api/pmapi1',
+        success: function (pms) {
+            pmlist = pms;
+            console.log(pms);
+            
+            $.each(pms, function (i, pm) {
+                    if (pm.location == "Greendale Poultry Farm")
+                        $('#Greendale1').append('<input type="radio" name="Greendale_group" class="btn-check" id="btn' + pm.pM_Name + '" autocomplete="off" value="' + pm.pM_Name + '"><label class="btn btn-outline-success" for="btn' + pm.pM_Name + '"><li class="nobullet"" id="' + pm.pM_Id + '"> ' + pm.pM_Name + '</li></label >');
+
+                    
+            });
+            
+        },
+        error: function () {
+            console.log("error occurs")
+        },
+
+    });
+    
+});
+
+var isBodyClicked3 = false;
+$("#milwaukee").on( "click",function milwaukee() {             //Milwaukee direct call 
+    if(isBodyClicked3 === false){
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44339/api/pmapi1',
+        success: function (pms) {
+            pmlist = pms;
+            console.log(pms);
+            
+            $.each(pms, function (i, pm) {
+                    if (pm.location == "Milwaukee Machine Shop")
+                        $('#Milwaukee1').append('<input type="radio" name="Milwaukee_group" class="btn-check" id="btn' + pm.pM_Name + '" autocomplete="off" value="' + pm.pM_Name + '"><label class="btn btn-outline-success" for="btn' + pm.pM_Name + '"><li class="nobullet"" id="' + pm.pM_Id + '"> ' + pm.pM_Name + '</li></label >');
+
+                    
+            });
+            
+        },
+        error: function () {
+            console.log("error occurs")
+        },
+
+    });
+    }
+});
+
+var isBodyClicked4 = false;
+$("#nash").on( "click",function nash() {             //Nash county direct call 
+   if(isBodyClicked4 === false){
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44339/api/pmapi1',
+        success: function (pms) {
+            pmlist = pms;
+            console.log(pms);
+            
+            $.each(pms, function (i, pm) {
+                    if (pm.location == "Nash County Quarry")
+                        $('#Nash1').append('<input type="radio" name="Nash_group" class="btn-check" id="btn' + pm.pM_Name + '" autocomplete="off" value="' + pm.pM_Name + '"><label class="btn btn-outline-success" for="btn' + pm.pM_Name + '"><li class="nobullet"" id="' + pm.pM_Id + '"> ' + pm.pM_Name + '</li></label >');
+
+                    
+            });
+            
+        },
+        error: function () {
+            console.log("error occurs")
+        },
+
+    });
+    }
+});
+
+var isBodyClicked5 = false;
+$("#winchester").on( "click",function winchester() {             //Winchester direct call 
+    if(isBodyClicked5 === false){
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44339/api/pmapi1',
+        success: function (pms) {
+            pmlist = pms;
+            console.log(pms);
+            
+            $.each(pms, function (i, pm) {
+                    if (pm.location == "Winchester Golf Course")
+                        $('#Winchester1').append('<input type="radio" name="Winchester_group" class="btn-check" id="btn' + pm.pM_Name + '" autocomplete="off" value="' + pm.pM_Name + '"><label class="btn btn-outline-success" for="btn' + pm.pM_Name + '"><li class="nobullet"" id="' + pm.pM_Id + '"> ' + pm.pM_Name + '</li></label >');
+
+                    
+            });
+            isBodyClicked5 = true;
+            
+        },
+        error: function () {
+            console.log("error occurs")
+        },
+
+    });
+    }
+});
+
+var isBodyClicked6 = false;
+$("#hgg").on( "click",function () {             //HGG direct call 
+  if(isBodyClicked6 === false)
+    $.ajax({
+        type: 'GET',
+        url: 'https://localhost:44339/api/pmapi1',
+        success: function (pms) {
+            pmlist = pms;
+            console.log(pms);
+            
+            $.each(pms, function (i, pm) {
+                    if (pm.location == "HGG")
+                        $('#HGG1').append('<input type="radio" name="HGG_group" class="btn-check" id="btn' + pm.pM_Name + '" autocomplete="off" value="' + pm.pM_Name + '"><label class="btn btn-outline-success" for="btn' + pm.pM_Name + '"><li class="nobullet"" id="' + pm.pM_Id + '"> ' + pm.pM_Name + '</li></label >');
+
+                    
+            });
+
+            isBodyClicked6=true;
+             
+        },
+        error: function () {
+            console.log("error occurs")
+        },
+
+    });
+
+    }
+    
+});
+
+</script>
+
+  
+
+
+  <!------------------------------------------------------------- toggle call -------------------------------------------->
+     
+    <script>
+        document.getElementById("new_template").addEventListener('change', function(e) {
+            if (this.checked) {
+                document.getElementById("table_view").style.display = "block";
+                document.getElementById("copy_template").style.display = "none";
+            }
+
+
+        });
+
+        document.getElementById("existing_template").addEventListener('change', function(e) {
+            if (this.checked) {
+                document.getElementById("copy_template").style.display = "block";
+                document.getElementById("table_view").style.display = "none";
+            }
+
+        });
+    </script>
+
+
+    <!---------------------------------------Calendar Script ----------------------------------------------->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#datepicker').datepicker({
+                format: "yy-mm-dd",
+                startDate: '-1y -1m',
+                endDate: '+2m +10d'
+            });
+
+            $('#datepicker2').datepicker({
+                format: "yy-mm-dd",
+                startDate: '-1m',
+                endDate: '+10d'
+            });
+        });
+    </script>
+
+
+
+
+
+@*
+<h4>PmModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PM_Name" class="control-label"></label>
+                <input asp-for="PM_Name" class="form-control" />
+                <span asp-validation-for="PM_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Asset" class="control-label"></label>
+                <input asp-for="Asset" class="form-control" />
+                <span asp-validation-for="Asset" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedules" class="control-label"></label>
+                <input asp-for="Schedules" class="form-control" />
+                <span asp-validation-for="Schedules" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assigned_To" class="control-label"></label>
+                <input asp-for="Assigned_To" class="form-control" />
+                <span asp-validation-for="Assigned_To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+*@
+
+<!------------------------------------------------------------------script for validation ---------------------------------------------------------------------->
+ 
+
+   <script>
+    
+        function Validation()  
+        {
+             document.getElementById("valname").innerHTML = " ";
+             document.getElementById("valasset").innerHTML = " ";
+             document.getElementById("valassign").innerHTML = " ";
+            let x= document.form.Pmname.value;      // Asset(null allowed) Assigned (non nullable) to should not have number .
+            if(isNaN(x) ==false || x=='')
+            {
+                document.getElementById("valname").innerHTML = " ";
+                document.getElementById("valname").innerHTML = "Numbers and Null fields not allowed in Name";
+                return false;
+            }
+           
+
+            var y= document.form.Asset.value;
+            if(isNaN(y) == false && y!=='')    // Validation for Asset
+            {
+                document.getElementById("valasset").innerHTML = " ";
+                document.getElementById("valasset").innerHTML = "Numbers not allowed in Asset";
+                return false;
+            }
+           
+
+            let z= document.form.Assigned_to.value; 
+            if(isNaN(z) == false && z!=='')                     // Validation for assigned_to
+            {
+                document.getElementById("valassign").innerHTML = " ";
+                document.getElementById("valassign").innerHTML = "Numbers not allowed in Assigned To";
+                return false;
+            }
+
+        }
+
+</script>
+
+
+<script>
+    $(document).ready(function() {
+  
+  // Get click event, assign button to var, and get values from that var
+  $('#aBtnGroup input').on('click', function() {
+    var thisBtn = $(this);
+    
+    thisBtn.addClass('active').siblings().removeClass('active');
+    var btnText = thisBtn.text();
+    var btnValue = thisBtn.val();
+    console.log(btnText + ' - ' + btnValue);
+    
+    $('#selectedVal').text(btnValue);
+  });
+  
+  // You can use this to set default value
+  // It will fire above click event which will do the updates for you
+  //$('#aBtnGroup button[value="M"]').click();
+});
+    
+</script>
